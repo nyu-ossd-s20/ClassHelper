@@ -13,7 +13,7 @@ async function sendMessage(){
     icon_emoji:":ghost:",
     text:"Anyone there?"
   }
-  const response = await fetch("{secret_hook}", {
+  const response = await fetch("[secretkey]", {
   method: 'POST', // *GET, POST, PUT, DELETE, etc.
   mode: 'no-cors', // no-cors, *cors, same-origin
   cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
