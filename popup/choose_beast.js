@@ -2,18 +2,54 @@
  * CSS to hide everything on the page,
  * except for elements that have the "beastify-image" class.
  */
+let config = {
+  Help:{
+      channel:"test-channel",
+      username:"A Student In Need",
+      icon_emoji:":ghost:",
+      text:"Anyone there?",
+      shown_text:"Send Help",
+      shown_image:"https://i.ytimg.com/vi/8U758F1uLdc/maxresdefault.jpg"
+  },
+  Symphogear:{
+      channel:"test-channel",
+      username:"The Symphochoir",
+      icon_emoji:":chris_bored:",
+      text:"Watch Symphogear.",
+      shown_text: "Symphogear",
+      shown_image:"https://i.imgur.com/QV5oCPK.png"
+  },
+  Symphochoir:{
+      channel:"test-channel",
+      username:"Cola Addict",
+      icon_emoji:":laffeydrink:",
+      text:"This is definitely Cola.",
+      shown_text: "Drink Cola",
+      shown_image:"https://images.unsplash.com/photo-1561758033-48d52648ae8b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
+  },
+  Menacing:{
+    channel:"test-channel",
+    username:"ゴゴゴゴ",
+    icon_emoji:":chris_bored:",
+    text:"ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ",
+    shown_text: "Menacing",
+    shown_image:"https://images.unsplash.com/photo-1505274664176-44ccaa7969a8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
+  }
+}
+
 const hidePage = `body > :not(.beastify-image) {
                     display: none;
                   }`;
 
-async function sendMessage(){
+async function sendMessage(spec_config){
+  // return
   const data = {
-    channel:"test-channel",
-    username:"A Student In Need",
-    icon_emoji:":ghost:",
-    text:"Anyone there?"
+    channel:spec_config.channel,
+    username:spec_config.username,
+    icon_emoji:spec_config.icon_emoji,
+    text:spec_config.text
   }
-  const response = await fetch("{secret_hook}", {
+  const response = await fetch("https://hooks.slack.com/services/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", {
   method: 'POST', // *GET, POST, PUT, DELETE, etc.
   mode: 'no-cors', // no-cors, *cors, same-origin
   cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
@@ -40,18 +76,27 @@ function listenForClicks() {
      * Given the name of a beast, get the URL to the corresponding image.
      */
     function beastNameToURL(beastName) {
-      switch (beastName) {
-        case "Frog":
-          // console.log("FROG")
-          // return
-          sendMessage()
-          // return
-          return browser.extension.getURL("beasts/frog.jpg");
-        case "Snake":
-          return browser.extension.getURL("beasts/snake.jpg");
-        case "Turtle":
-          return browser.extension.getURL("beasts/turtle.jpg");
+      if (beastName in config){
+        sendMessage(config[beastName]);
+        return browser.extension.getURL(config[beastName].shown_image)
       }
+      // switch (beastName) {
+      //   case "Frog":
+      //     // console.log("FROG")
+      //     // return
+      //     sendMessage()
+      //     // return
+      //     return browser.extension.getURL("beasts/frog.jpg");
+      //   case "Snake":
+      //     return browser.extension.getURL("beasts/snake.jpg");
+      //   case "Turtle":
+      //     return browser.extension.getURL("beasts/turtle.jpg");
+      //   case "Help":
+      //     sendMessage(
+      //       config.google
+      //     )
+      //     return browser.extension.getURL(config.google.shown_image)
+      // }
     }
 
     /**
