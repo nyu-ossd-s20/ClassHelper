@@ -34,6 +34,23 @@ let config = {
     text:"ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ",
     shown_text: "Menacing",
     shown_image:"https://images.unsplash.com/photo-1505274664176-44ccaa7969a8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
+  },
+  HKS2:{
+    channel : "test-channel",
+    username : "Gordon Ramsey",
+    icon_emoji: ":angry:",
+    text : "Where is the lambsauce??!?!?!!?",
+    shown_text:"HK Season 2",
+    shown_image:"https://live.staticflickr.com/2125/2269798293_c744f1bfeb.jpg"
+  },
+  Rat:{
+    channel : "test-channel",
+    username : "ratty",
+    icon_emoji : ":rat:",
+    text : "*rat noises*",
+    shown_text:"Talented Rat",
+    shown_image:"https://upload.wikimedia.org/wikipedia/commons/c/c1/Rat_agouti.jpg"
+
   }
 }
 
@@ -49,7 +66,7 @@ async function sendMessage(spec_config){
     icon_emoji:spec_config.icon_emoji,
     text:spec_config.text
   }
-  const response = await fetch("https://hooks.slack.com/services/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", {
+  const response = await fetch("{SECRET_URL}", {
   method: 'POST', // *GET, POST, PUT, DELETE, etc.
   mode: 'no-cors', // no-cors, *cors, same-origin
   cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
